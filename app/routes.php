@@ -1,3 +1,3 @@
 <?php
 
-Route::get('import/{symbol}', array('uses' => 'ValuesController@importValues'));
+Route::controller('stocks', 'StocksController');

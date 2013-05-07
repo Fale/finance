@@ -15,13 +15,13 @@ class CreateValuesTable extends Migration {
             $table->increments('id');
             $table->integer('stock_id')->unsigned();
             $table->date('date');
-            $table->decimal('open', 5, 2);
-            $table->decimal('close', 5, 2);
-            $table->decimal('high', 5, 2);
-            $table->decimal('low', 5, 2);
+            $table->integer('open');
+            $table->integer('close');
+            $table->integer('high');
+            $table->integer('low');
             $table->integer('volume')->unsigned();
-            $table->decimal('delta', 5, 2);
-            $table->decimal('absdelta', 5, 2);
+            $table->integer('delta');
+            $table->integer('absdelta');
             $table->foreign('stock_id')->references('id')->on('stocks');
         });
     }
