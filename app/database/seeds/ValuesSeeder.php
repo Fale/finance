@@ -13,8 +13,12 @@ class ValuesSeeder extends Seeder {
         $stocks = Stock::get();
         foreach ($stocks as $stock) {
             echo $stock->id . '. ' . $stock->symbol . "...";
-            $imported = $controller->getImport('NASDAQ', $stock->symbol);
-            echo " done (" . $imported . " imported)\n";
+            if ($stock->active)
+            {
+                $imported = $controller->getImport('NASDAQ', $stock->symbol);
+                echo " done (" . $imported . " imported)\n";
+            } else
+                echo " skipped\n";
         }
     }
 }
