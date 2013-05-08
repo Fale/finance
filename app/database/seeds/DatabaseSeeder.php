@@ -11,8 +11,11 @@ class DatabaseSeeder extends Seeder {
 	{
 		Eloquent::unguard();
 
-		$this->call('MarketsSeeder');
-		$this->call('StocksSeeder');
+		if (!Market::count())
+			$this->call('MarketsSeeder');
+		if (!Stock::count())
+			$this->call('StocksSeeder');
+		$this->call('ValuesSeeder');
 	}
 
 }

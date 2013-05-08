@@ -26,9 +26,11 @@ class StocksController extends BaseController {
 
         $present = Value::where('stock_id', $id)->lists('id', 'date');
 
-        foreach (array_diff_key($datas, $present) as $data) {
+        $real = array_diff_key($datas, $present);
+        foreach ($real as $data) {
         	Value::create($data);
         }
+        return count($real);
 	}
 
     public function getPeaks($market, $percentile)
