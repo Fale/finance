@@ -31,4 +31,14 @@ class StocksController extends BaseController {
         }
 	}
 
+    public function getPeaks($market, $percentile)
+    {
+        foreach(Value::where('delta', '>=', $percentile * 100)->get() as $value)
+        {
+            echo $value->stock_id . ' ';
+            echo $value->date . ' ';
+            echo $value->delta;
+            echo "<br>";
+        }
+    }
 }
