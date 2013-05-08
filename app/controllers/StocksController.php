@@ -42,7 +42,7 @@ class StocksController extends BaseController {
 
         foreach ($values as $value)
         {
-            echo $value->stock_id . ' ';
+            echo $value->stock->symbol . ' ';
             echo $value->date . ' ';
             echo Value::toDouble($value->delta);
             echo "<br>";

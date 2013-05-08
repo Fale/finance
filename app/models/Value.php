@@ -15,4 +15,9 @@ class Value extends Eloquent {
 	{
 		return substr($integer, 0, -2) . '.' . substr($integer, -2);
 	}
+
+	public function stock()
+	{
+		return $this->belongsTo('Stock');
+	}
 }
