@@ -25,7 +25,9 @@ class StocksController extends BaseController {
             }
         }
 
-        foreach ($datas as $data) {
+        $present = Value::where('stock_id', $id)->lists('id', 'date');
+
+        foreach (array_diff_key($datas, $present) as $data) {
         	Value::create($data);
         }
 	}
