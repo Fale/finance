@@ -30,6 +30,11 @@ class StocksController extends BaseController {
         foreach ($real as $data) {
         	Value::create($data);
         }
+
+        $last = max(array_keys($datas));
+        Stock::find($id)->update(array('last' => $last));
+        Stock::find($id)->update(array('value' => $datas[$last]['close']));
+
         return count($real);
 	}
 
