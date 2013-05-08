@@ -12,7 +12,7 @@ class ValuesSeeder extends Seeder {
         $controller = new StocksController();
         $stocks = Stock::get();
         foreach ($stocks as $stock) {
-            echo $stock->symbol . "...";
+            echo $stock->id . '. ' . $stock->symbol . "...";
             $imported = $controller->getImport('NASDAQ', $stock->symbol);
             echo " done (" . $imported . " imported)\n";
         }
