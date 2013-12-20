@@ -2,13 +2,14 @@
 
 class ValuesSeeder extends Seeder {
 
-	/**
-	 * Run the database seeds.
-	 *
-	 * @return void
-	 */
-	public function run()
-	{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        DB::connection()->disableQueryLog();
         $controller = new StocksController();
         $stocks = Stock::get();
         foreach ($stocks as $stock) {
