@@ -5,7 +5,10 @@ class StocksController extends BaseController {
     public function getImport($market, $symbol)
     {
         $id = Stock::where('symbol', $symbol)->pluck('id');
-        $handle = fopen('http://ichart.yahoo.com/table.csv?s=' . $symbol, 'r');
+        if(!file_exists('http://ichart.yahoo.com/table.csv?s=' . $symbol, 'r'))
+            exit;
+        else
+            $handle = fopen('http://ichart.yahoo.com/table.csv?s=' . $symbol, 'r');
         $l = 0;
         while (($data = fgetcsv($handle, 5000, ",")) !== FALSE) {
             $l ++;
