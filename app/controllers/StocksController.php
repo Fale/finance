@@ -2,11 +2,11 @@
 
 class StocksController extends BaseController {
 
-	public function getImport($market, $symbol)
-	{
-		$id = Stock::where('symbol', $symbol)->pluck('id');
-		$handle = fopen('http://ichart.yahoo.com/table.csv?s=' . $symbol, 'r');
-		$l = 0;
+    public function getImport($market, $symbol)
+    {
+        $id = Stock::where('symbol', $symbol)->pluck('id');
+        $handle = fopen('http://ichart.yahoo.com/table.csv?s=' . $symbol, 'r');
+        $l = 0;
         while (($data = fgetcsv($handle, 5000, ",")) !== FALSE) {
             $l ++;
             if ($l == 1)
@@ -18,10 +18,8 @@ class StocksController extends BaseController {
             $datas[$data[0]]['high'] = $data[2];
             $datas[$data[0]]['low'] = $data[3];
             $datas[$data[0]]['volume'] = (int) $data[5];
-            $delta = ($data[4] - $data[1]) / $data[1];
-            $datas[$data[0]]['delta'] = (int) ($delta * 10000);
-            $absdelta = ($data[2] - $data[3]) / $data[2];
-            $datas[$data[0]]['absdelta'] = (int) ($absdelta * 10000);
+            $datas[$data[0]]['delta'] = ($data[4] - $data[1]) / $data[1];
+            $datas[$data[0]]['absdelta'] = ($data[2] - $data[3]) / $data[2];
         }
 
         $present = Value::where('stock_id', $id)->lists('id', 'date');
@@ -36,7 +34,7 @@ class StocksController extends BaseController {
         Stock::find($id)->update(array('value' => $datas[$last]['close']));
 
         return count($real);
-	}
+    }
 
     public function getPeaks($market, $percentile, $date = '1900-01-01')
     {
