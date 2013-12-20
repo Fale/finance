@@ -22,9 +22,6 @@ class StocksSeeder extends Seeder {
                 $datas[$data[0]]['sector'] = $data[6];
                 $datas[$data[0]]['industry'] = $data[7];
                 $datas[$data[0]]['url'] = $data[8];
-                $datas[$data[0]]['active'] = 1;
-                $datas[$data[0]]['last'] = "1970-01-01";
-                $datas[$data[0]]['value'] = 0;
             }
         }
 

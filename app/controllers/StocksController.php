@@ -13,14 +13,14 @@ class StocksController extends BaseController {
                 continue;
        	    $datas[$data[0]]['stock_id'] = (int) $id;
             $datas[$data[0]]['date'] = $data[0];
-            $datas[$data[0]]['open'] = Value::toInt($data[1]);
-            $datas[$data[0]]['close'] = Value::toInt($data[4]);
-            $datas[$data[0]]['high'] = Value::toInt($data[2]);
-            $datas[$data[0]]['low'] = Value::toInt($data[3]);
+            $datas[$data[0]]['open'] = $data[1];
+            $datas[$data[0]]['close'] = $data[4];
+            $datas[$data[0]]['high'] = $data[2];
+            $datas[$data[0]]['low'] = $data[3];
             $datas[$data[0]]['volume'] = (int) $data[5];
-            $delta = (Value::toInt($data[4]) - Value::toInt($data[1])) / Value::toInt($data[1]);
+            $delta = ($data[4] - $data[1]) / $data[1];
             $datas[$data[0]]['delta'] = (int) ($delta * 10000);
-            $absdelta = (Value::toInt($data[2]) - Value::toInt($data[3])) / Value::toInt($data[2]);
+            $absdelta = ($data[2] - $data[3]) / $data[2];
             $datas[$data[0]]['absdelta'] = (int) ($absdelta * 10000);
         }
 
