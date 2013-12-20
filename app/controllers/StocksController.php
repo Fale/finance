@@ -5,8 +5,9 @@ class StocksController extends BaseController {
     public function getImport($market, $symbol)
     {
         $id = Stock::where('symbol', $symbol)->pluck('id');
-        if(!file_exists('http://ichart.yahoo.com/table.csv?s=' . $symbol, 'r'))
-            exit;
+        $file_headers = @get_headers('http://ichart.yahoo.com/table.csv?s=' . $symbol);
+        if($file_headers[0] == 'HTTP/1.1 404 Not Found')
+            return 0;
         else
             $handle = fopen('http://ichart.yahoo.com/table.csv?s=' . $symbol, 'r');
         $l = 0;
