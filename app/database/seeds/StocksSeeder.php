@@ -17,11 +17,11 @@ class StocksSeeder extends Seeder {
             if ($l > 1)
             {
             	$datas[$data[0]]['market_id'] = 1;
-                $datas[$data[0]]['symbol'] = $data[0];
-                $datas[$data[0]]['name'] = $data[1];
-                $datas[$data[0]]['sector'] = $data[6];
-                $datas[$data[0]]['industry'] = $data[7];
-                $datas[$data[0]]['url'] = $data[8];
+                $datas[$data[0]]['symbol'] = trim($data[0]);
+                $datas[$data[0]]['name'] = trim($data[1]);
+                $datas[$data[0]]['sector'] = trim($data[6]);
+                $datas[$data[0]]['industry'] = trim($data[7]);
+                $datas[$data[0]]['url'] = trim($data[8]);
             }
         }
 
