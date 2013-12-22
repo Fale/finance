@@ -2,7 +2,7 @@
 
 class StocksController extends BaseController {
 
-    public function getImport($market, $symbol)
+    public function getImport($market, $symbol, $onlyNew = false)
     {
         $id = Stock::where('symbol', $symbol)->pluck('id');
         if(!file_exists('http://ichart.yahoo.com/table.csv?s=' . $symbol, 'r'))
@@ -10,9 +10,13 @@ class StocksController extends BaseController {
         else
             $handle = fopen('http://ichart.yahoo.com/table.csv?s=' . $symbol, 'r');
         $l = 0;
+        if ($onlyNew)
+            $last = Stock::where('symbol', $symbol)->pluck('last');
         while (($data = fgetcsv($handle, 5000, ",")) !== FALSE) {
             $l ++;
             if ($l == 1)
+                continue;
+            if ($onlyNew AND $last >= $data[0])
                 continue;
        	    $datas[$data[0]]['stock_id'] = (int) $id;
             $datas[$data[0]]['date'] = $data[0];
