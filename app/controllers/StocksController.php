@@ -4,20 +4,24 @@ class StocksController extends BaseController {
 
     public function getImport($market, $symbol, $onlyNew = false)
     {
+        $url = 'http://ichart.yahoo.com/table.csv?s=' . $symbol;
+        if ($onlyNew) {
+            $t = Stock::where('symbol', $symbol)->pluck('last');
+            $url.= '&a=' . date(strtotime('n', $t)) - 1;
+            $url.= '&b=' . date(strtotime('j', $t));
+            $url.= '&c=' . date(strtotime('Y', $t));
+        }
+
         $id = Stock::where('symbol', $symbol)->pluck('id');
-        $file_headers = @get_headers('http://ichart.yahoo.com/table.csv?s=' . $symbol);
+        $file_headers = @get_headers($url);
         if($file_headers[0] == 'HTTP/1.1 404 Not Found')
             return 0;
         else
-            $handle = fopen('http://ichart.yahoo.com/table.csv?s=' . $symbol, 'r');
+            $handle = fopen($url, 'r');
         $l = 0;
-        if ($onlyNew)
-            $last = Stock::where('symbol', $symbol)->pluck('last');
         while (($data = fgetcsv($handle, 5000, ",")) !== FALSE) {
             $l ++;
             if ($l == 1)
-                continue;
-            if ($onlyNew AND $last >= $data[0])
                 continue;
        	    $datas[$data[0]]['stock_id'] = (int) $id;
             $datas[$data[0]]['date'] = $data[0];
