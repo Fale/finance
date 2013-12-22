@@ -21,7 +21,7 @@ class CreateStocksTable extends Migration {
             $table->string('url');
             $table->boolean('active')->default('true');
             $table->date('last')->default('1970-01-01');
-            $table->double('value', 9, 5)->default('0000.00000');
+            $table->double('value', 11, 5)->default('0000.00000');
             $table->foreign('market_id')->references('id')->on('markets');
         });
 	}

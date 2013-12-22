@@ -5,8 +5,9 @@ class StocksController extends BaseController {
     public function getImport($market, $symbol, $onlyNew = false)
     {
         $id = Stock::where('symbol', $symbol)->pluck('id');
-        if(!file_exists('http://ichart.yahoo.com/table.csv?s=' . $symbol, 'r'))
-            exit;
+        $file_headers = @get_headers('http://ichart.yahoo.com/table.csv?s=' . $symbol);
+        if($file_headers[0] == 'HTTP/1.1 404 Not Found')
+            return 0;
         else
             $handle = fopen('http://ichart.yahoo.com/table.csv?s=' . $symbol, 'r');
         $l = 0;
@@ -25,8 +26,8 @@ class StocksController extends BaseController {
             $datas[$data[0]]['high'] = $data[2];
             $datas[$data[0]]['low'] = $data[3];
             $datas[$data[0]]['volume'] = (int) $data[5];
-            $datas[$data[0]]['delta'] = ($data[4] - $data[1]) / $data[1];
-            $datas[$data[0]]['absdelta'] = ($data[2] - $data[3]) / $data[2];
+            $datas[$data[0]]['delta'] = (($data[4] - $data[1]) / $data[1]) * 100;
+            $datas[$data[0]]['absdelta'] = (($data[2] - $data[3]) / $data[2]) * 100;
         }
 
         $present = Value::where('stock_id', $id)->lists('id', 'date');
