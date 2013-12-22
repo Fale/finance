@@ -6,10 +6,10 @@ class StocksController extends BaseController {
     {
         $url = 'http://ichart.yahoo.com/table.csv?s=' . $symbol;
         if ($onlyNew) {
-            $t = Stock::where('symbol', $symbol)->pluck('last');
-            $url.= '&a=' . date(strtotime('n', $t)) - 1;
-            $url.= '&b=' . date(strtotime('j', $t));
-            $url.= '&c=' . date(strtotime('Y', $t));
+            $t = strtotime(Stock::where('symbol', $symbol)->pluck('last'));
+            $url.= '&a=' . date('n', $t) - 1;
+            $url.= '&b=' . date('j', $t);
+            $url.= '&c=' . date('Y', $t);
         }
 
         $id = Stock::where('symbol', $symbol)->pluck('id');
