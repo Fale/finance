@@ -37,6 +37,7 @@ class ImportAll extends Command {
      */
     public function fire()
     {
+        DB::connection()->disableQueryLog();
         $controller = new StocksController();
         $stocks = Stock::get();
         foreach ($stocks as $stock) {

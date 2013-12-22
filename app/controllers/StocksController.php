@@ -4,12 +4,17 @@ class StocksController extends BaseController {
 
     public function getImport($market, $symbol, $onlyNew = false)
     {
-        $url = 'http://ichart.yahoo.com/table.csv?s=' . $symbol;
+        $url = 'http://ichart.yahoo.com/table.csv?s=' . trim($symbol);
         if ($onlyNew) {
             $t = strtotime(Stock::where('symbol', $symbol)->pluck('last'));
-            $url.= '&a=' . date('n', $t) - 1;
+            echo date('j n Y', $t);
+            if (date('n', $t) >= 1)
+                $url.= '&a=' . (date('n', $t) - 1);
+            else
+                $url.= '&a=' . date('n', $t);
             $url.= '&b=' . date('j', $t);
             $url.= '&c=' . date('Y', $t);
+            echo $url;
         }
 
         $id = Stock::where('symbol', $symbol)->pluck('id');
@@ -34,6 +39,7 @@ class StocksController extends BaseController {
             $datas[$data[0]]['absdelta'] = (($data[2] - $data[3]) / $data[2]) * 100;
         }
 
+        echo $l;
         $present = Value::where('stock_id', $id)->lists('id', 'date');
 
         $real = array_diff_key($datas, $present);
