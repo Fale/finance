@@ -11,3 +11,5 @@
 |
 */
 
+Artisan::add(new ImportAll);
+Artisan::add(new ImportNew);
