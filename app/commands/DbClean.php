@@ -46,6 +46,12 @@ class DbClean extends Command {
                 $stock->save();
                 echo "'" . $stock->symbol . "'\n";
             }
+            if ($stock->name != trim($stock->name)) {
+                echo "'" . $stock->name . "' -> ";
+                $stock->name = trim($stock->name);
+                $stock->save();
+                echo "'" . $stock->name . "'\n";
+            }
         }
     }
 
