@@ -1,9 +1,13 @@
 <?php
 
 class Stock extends Eloquent {
-	
-	public $timestamps = false;
+    
+    public $timestamps = false;
 
-	protected $guarded = array();
-	
+    protected $guarded = array();
+    
+    public function values()
+    {
+        return $this->hasMany('Value');
+    }
 }
