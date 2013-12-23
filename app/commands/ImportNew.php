@@ -42,10 +42,9 @@ class ImportNew extends Command {
         $stocks = Stock::get()->where('active', TRUE);
         foreach ($stocks as $stock) {
             echo $stock->id . '. ' . $stock->symbol . "...";
-            $imported = $controller->getImport('NASDAQ', $stock->symbol, true);
+            $imported = $controller->getImport('NASDAQ', $stock->symbol, TRUE);
             echo " done (" . $imported . " imported)\n";
         }
-
     }
 
     /**
