@@ -18,7 +18,7 @@ class ImportFast extends Command {
      *
      * @var string
      */
-    protected $description = 'Command description.';
+    protected $description = 'Import data generated of stocks with no values.';
 
     /**
      * Create a new command instance.
@@ -58,9 +58,7 @@ class ImportFast extends Command {
      */
     protected function getArguments()
     {
-        return array(
-            array('example', InputArgument::REQUIRED, 'An example argument.'),
-        );
+        return array();
     }
 
     /**
@@ -70,9 +68,7 @@ class ImportFast extends Command {
      */
     protected function getOptions()
     {
-        return array(
-            array('example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null),
-        );
+        return array();
     }
 
 }
