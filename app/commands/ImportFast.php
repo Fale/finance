@@ -39,10 +39,10 @@ class ImportFast extends Command {
     {
         DB::connection()->disableQueryLog();
         $controller = new StocksController();
-        $stocks = Stock::get()->where('active', TRUE);
+        $stocks = Stock::where('active', TRUE)->get();
         foreach ($stocks as $stock) {
             echo $stock->id . '. ' . $stock->symbol . "...";
-            if ($stock->values != NULL) {
+            if ($stock->values()->count() == 0) {
                 $imported = $controller->getImport('NASDAQ', $stock->symbol);
                 echo " done (" . $imported . " imported)\n";
             } else
