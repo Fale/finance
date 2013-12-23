@@ -43,11 +43,8 @@ class ImportFast extends Command {
         $stocks = Stock::where('active', TRUE)->whereNotIn('id', $values)->orderBy('id')->get();
         foreach ($stocks as $stock) {
             echo $stock->id . '. ' . $stock->symbol . "...";
-            if ($stock->values()->count() == 0) {
-                $imported = $controller->getImport('NASDAQ', $stock->symbol);
-                echo " done (" . $imported . " imported)\n";
-            } else
-                echo " skipped\n";
+            $imported = $controller->getImport('NASDAQ', $stock->symbol);
+            echo " done (" . $imported . " imported)\n";
         }
 
     }
