@@ -41,8 +41,10 @@ class DbClean extends Command {
         $stocks = Stock::get();
         foreach ($stocks as $stock) {
             if ($stock->symbol != trim($stock->symbol)) {
+                echo "'" . $stock->symbol . "' -> ";
                 $stock->symbol = trim($stock->symbol);
                 $stock->save();
+                echo "'" . $stock->symbol . "'\n";
             }
         }
     }
