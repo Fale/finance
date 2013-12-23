@@ -39,7 +39,7 @@ class ImportAll extends Command {
     {
         DB::connection()->disableQueryLog();
         $controller = new StocksController();
-        $stocks = Stock::where('active', TRUE)->get();
+        $stocks = Stock::where('active', TRUE)->orderBy('id')->get();
         foreach ($stocks as $stock) {
             echo $stock->id . '. ' . $stock->symbol . "...";
             $imported = $controller->getImport('NASDAQ', $stock->symbol);
