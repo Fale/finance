@@ -11,5 +11,6 @@
 |
 */
 
+Artisan::add(new DbClean);
 Artisan::add(new ImportAll);
 Artisan::add(new ImportNew);
