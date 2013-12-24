@@ -55,10 +55,12 @@ class StocksController extends BaseController {
         return count($real);
     }
 
-    public function getPeaks($percentile = '10', $date = NULL, $market = 'NASDAQ')
+    public function getPeaks()
     {
-        if ($date == NULL)
-            $date = Carbon::now()->subWeek();
+        $percentile = Input::get('percentile', 10);
+        $date = Input::get('date', Carbon::now()->subWeek());
+        $market = Input::get('market', 'NASDAQ');
+
         if ($percentile >= 0)
             $values = Value::where('delta', '>=', $percentile)->where('date', '>=', $date)->get();
         else
