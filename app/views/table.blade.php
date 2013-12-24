@@ -1,23 +1,31 @@
 @extends('layout')
 
 @section('content')
-    <script src="//cdn.jsdelivr.net/tablesorter/2.13.3/js/jquery.tablesorter.min.js"></script>
-    <script >
-        $(function() {
-            $("table#sortTableExample").tablesorter({ sortList: [[1,0]] });
-        });
-    </script>
-    <table class="zebra-striped">
+    <table class="table table-striped sortable">
         <thead>
-            <td>Symbol</td>
-            <td>Date</td>
-            <td>Delta</td>
+            <tr>
+                <th>Symbol</th>
+                <th>Date</th>
+                <th>Open</th>
+                <th>Close</th>
+                <th>Delta</th>
+                <th>Low</th>
+                <th>High</th>
+                <th>Delta</th>
+                <th>Volume</th>
+            </tr>
         </thead>
         @foreach ($datas as $data)
             <tr>
                 <td>{{$data->stock->symbol}}</td>
                 <td>{{$data->date}}</td>
+                <td>{{$data->open}}</td>
+                <td>{{$data->close}}</td>
                 <td>{{$data->delta}}</td>
+                <td>{{$data->low}}</td>
+                <td>{{$data->high}}</td>
+                <td>{{$data->absdelta}}</td>
+                <td>{{$data->volume}}</td>
             </tr>
         @endforeach
     </table>
