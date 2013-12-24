@@ -60,12 +60,15 @@ class StocksController extends BaseController {
         else
             $values = Value::where('delta', '<=', $percentile)->where('date', '>=', $date)->get();
 
-        foreach ($values as $value)
+        $datas = array();
+
+        foreach ($values as $k => $value)
         {
-            echo $value->stock->symbol . ' ';
-            echo $value->date . ' ';
-            echo $value->delta;
-            echo "<br>";
+            $datas[$k]['symbol'] = $value->stock->symbol;
+            $datas[$k]['date'] = $value->date;
+            $datas[$k]['delta'] =  $value->delta;
         }
+
+        return View::make('table', $datas);
     }
 }
