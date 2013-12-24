@@ -15,7 +15,10 @@ class DatabaseSeeder extends Seeder {
 			$this->call('MarketsSeeder');
 		if (!Stock::count())
 			$this->call('StocksSeeder');
-		$this->call('ValuesSeeder');
+		if (!Value::count())
+			$this->call('ValuesSeeder');
+		if (!User::count())
+			$this->call('UsersSeeder');
 	}
 
 }
