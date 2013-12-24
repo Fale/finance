@@ -15,7 +15,7 @@
         </thead>
         @foreach ($datas as $data)
             <tr>
-                <td>{{$data->symbol}}</td>
+                <td>{{$data->stock->symbol}}</td>
                 <td>{{$data->date}}</td>
                 <td>{{$data->delta}}</td>
             </tr>
