@@ -11,7 +11,10 @@
   </head>
   <body>
     <div class="container">
-        @yield('content')
+      @if(Session::has('message'))
+        <p class="alert">{{ Session::get('message') }}</p>
+      @endif
+      @yield('content')
     </div>
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>

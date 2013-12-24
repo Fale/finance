@@ -2,6 +2,10 @@
 
 class StocksController extends BaseController {
 
+    public function __construct() {
+        $this->beforeFilter('auth');
+    }
+
     public function getImport($market, $symbol, $onlyNew = false)
     {
         $url = 'http://ichart.yahoo.com/table.csv?s=' . trim($symbol);
