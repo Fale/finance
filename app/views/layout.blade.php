@@ -32,7 +32,7 @@
     </div>
     <div class="container">
       @if(Session::has('message'))
-        <p class="alert">{{ Session::get('message') }}</p>
+        <div class="alert alert-success">{{ Session::get('message') }}</div>
       @endif
       @yield('content')
     </div>
