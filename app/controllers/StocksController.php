@@ -51,18 +51,20 @@ class StocksController extends BaseController {
         return count($real);
     }
 
-    public function getPeaks($market, $percentile, $date = '1900-01-01')
+    public function getPeaks($percentile = '10', $date = NULL, $market = 'NASDAQ')
     {
+        if ($date == NULL)
+            $date = Carbon::now()->subWeek();
         if ($percentile >= 0)
-            $values = Value::where('delta', '>=', $percentile * 100)->where('date', '>=', $date)->get();
+            $values = Value::where('delta', '>=', $percentile)->where('date', '>=', $date)->get();
         else
-            $values = Value::where('delta', '<=', $percentile * 100)->where('date', '>=', $date)->get();
+            $values = Value::where('delta', '<=', $percentile)->where('date', '>=', $date)->get();
 
         foreach ($values as $value)
         {
             echo $value->stock->symbol . ' ';
             echo $value->date . ' ';
-            echo Value::toDouble($value->delta);
+            echo $value->delta;
             echo "<br>";
         }
     }
