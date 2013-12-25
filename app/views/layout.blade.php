@@ -24,9 +24,7 @@
             </ul>
           @endif
           <ul class="nav navbar-nav navbar-right">
-            @if(!Auth::check())
-               <li>{{ HTML::link('users/login', 'Login') }}</li>   
-            @else
+            @if(Auth::check())
                <li>{{ HTML::link('users/logout', 'Logout') }}</li>
             @endif
           </ul>
