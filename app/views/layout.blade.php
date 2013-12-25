@@ -19,6 +19,7 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li{{ Request::is('stocks/peaks') ? ' class="active"' : '' }}>{{HTML::link('/stocks/peaks','Peaks')}}</li>
+            <li{{ Request::is('queries') ? ' class="active"' : '' }}>{{HTML::link('/queries','Queries')}}</li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             @if(!Auth::check())
