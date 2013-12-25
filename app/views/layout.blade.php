@@ -17,10 +17,12 @@
           <a class="navbar-brand" href="/">Finance</a>
         </div>
         <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li{{ Request::is('stocks/peaks') ? ' class="active"' : '' }}>{{HTML::link('/stocks/peaks','Peaks')}}</li>
-            <li{{ Request::is('queries') ? ' class="active"' : '' }}>{{HTML::link('/queries','Queries')}}</li>
-          </ul>
+          @if(Auth::check())
+            <ul class="nav navbar-nav">
+              <li{{ Request::is('stocks/peaks') ? ' class="active"' : '' }}>{{HTML::link('/stocks/peaks','Peaks')}}</li>
+              <li{{ Request::is('queries') ? ' class="active"' : '' }}>{{HTML::link('/queries','Queries')}}</li>
+            </ul>
+          @endif
           <ul class="nav navbar-nav navbar-right">
             @if(!Auth::check())
                <li>{{ HTML::link('users/login', 'Login') }}</li>   
