@@ -18,13 +18,13 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/stocks/peaks">Peaks</a></li>
+            <li{{ Request::is('stocks/peaks') ? ' class="active"' : '' }}>{{HTML::link('/stocks/peaks','Peaks')}}</li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             @if(!Auth::check())
                <li>{{ HTML::link('users/login', 'Login') }}</li>   
             @else
-               <li>{{ HTML::link('users/logout', 'logout') }}</li>
+               <li>{{ HTML::link('users/logout', 'Logout') }}</li>
             @endif
           </ul>
         </div><!--/.nav-collapse -->
