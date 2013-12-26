@@ -37,7 +37,7 @@
       @endif
       @yield('content')
     </div>
-    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
     @yield('js', '')
   </body>
