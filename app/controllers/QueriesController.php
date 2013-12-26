@@ -13,4 +13,9 @@ class QueriesController extends BaseController {
 	{
 		$this->layout->content = View::make('queries/new');
 	}
+
+	public function postNew()
+	{
+		return Input::all();
+	}
 }
