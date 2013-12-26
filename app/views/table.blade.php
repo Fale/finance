@@ -30,3 +30,12 @@
         @endforeach
     </table>
 @stop
+
+@section('js')
+    <script src="//cdn.jsdelivr.net/tablesorter/2.13.3/js/jquery.tablesorter.min.js"></script>
+    <script >
+        $(function() {
+            $(".sortable").tablesorter();
+        });
+    </script>
+@stop
