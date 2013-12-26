@@ -1,5 +1,5 @@
 @extends('layout')
 
 @section('content')
-{{HTML::link('/queries/new/', '<button type="button" class="btn btn-primary">New</button>')}}
+{{HTML::link('/queries/new/', 'Nuova', 'btn btn-primary btn-large')}}
 @stop
