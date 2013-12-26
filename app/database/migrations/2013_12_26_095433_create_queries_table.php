@@ -15,6 +15,7 @@ class CreateQueriesTable extends Migration {
             $table->increments('id');
             $table->integer('owner_id')->unsigned();
             $table->string('name');
+            $table->string('filters');
             $table->integer('execution_times')->unsigned();
             $table->timestamp('last_executed_at');
             $table->timestamps();
