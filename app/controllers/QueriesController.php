@@ -6,7 +6,11 @@ class QueriesController extends BaseController {
 
 	public function getIndex()
 	{
-		$this->layout->content = 'Hi';
+		$this->layout->content = View::make('queries/index');
 	}
 
+	public function getNew()
+	{
+		$this->layout->content = View::make('queries/new');
+	}
 }
