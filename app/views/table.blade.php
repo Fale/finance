@@ -17,7 +17,7 @@
                 <th>High</th>
                 <th>Delta</th>
                 <th>Volume</th>
-                <th><b title="((Open + Close) * Volume) / 2">Indice 1</b></th>
+                <th title="((Open + Close) * Volume) / 2">Indice 1</th>
             </tr>
         </thead>
         @foreach ($datas as $data)
