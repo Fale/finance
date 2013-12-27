@@ -13,6 +13,7 @@
                 <th>High</th>
                 <th>Delta</th>
                 <th>Volume</th>
+                <th>Indice 1</th>
             </tr>
         </thead>
         @foreach ($datas as $data)
@@ -26,6 +27,7 @@
                 <td>{{$data->high}}</td>
                 <td>{{$data->absdelta}}</td>
                 <td>{{$data->volume}}</td>
+                <td>{{(($data->close + $data->open) * $data->volume) / 2}}</td>
             </tr>
         @endforeach
     </table>
