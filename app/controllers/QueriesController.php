@@ -6,7 +6,8 @@ class QueriesController extends BaseController {
 
     public function getIndex()
     {
-        $this->layout->content = View::make('queries/index');
+        $queries = Query::where('owner_id', Session::get('userId'))->get();
+        $this->layout->content = View::make('queries/index')->with(array('queries' => $queries));
     }
 
     public function getNew()
