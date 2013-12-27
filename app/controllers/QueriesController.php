@@ -16,9 +16,11 @@ class QueriesController extends BaseController {
 
     public function postNew()
     {
-        $filters = Input::get('filters');
-
-        $this->layout->content = var_dump(Input::get('filters'));
+        $query = new Query;
+        $query->name = Input::get('name');
+        $query->filters = Input::get('filters');
+        $query->save();
+        return Redirect::to('/queries');
     }
 
     public function getQuery()

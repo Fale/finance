@@ -2,8 +2,10 @@
 
 @section('content')
   <h1>Nuova query</h1>
-
   {{ Form::open(array('url' => 'queries/new', 'class' => 'form-inline')) }}
+    <div class="form-group">
+      {{ Form::text('name', '', array('class' => 'form-control')) }}
+    </div>
     {{Form::Button('Add', array('id' => 'add', 'class' => 'btn btn-primary')) }}
     {{ Form::submit('Save', array('class' => 'btn btn-primary', 'id' => 'submit')) }}
     {{ Form::button('Delete', array('class' => 'btn btn-danger')) }}

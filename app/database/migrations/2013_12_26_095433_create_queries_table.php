@@ -14,6 +14,7 @@ class CreateQueriesTable extends Migration {
         Schema::create('queries', function($table){
             $table->increments('id');
             $table->integer('owner_id')->unsigned();
+            $table->boolean('starred');
             $table->string('name');
             $table->string('filters');
             $table->integer('execution_times')->unsigned();
