@@ -13,7 +13,7 @@
         </thead>
         @foreach ($queries as $query)
             <tr>
-                <td>{{$query->starred}}</td>
+                <td><span class="glyphicon glyphicon-star{{(!$query->starred) ? "-empty" : ""}}"></span></td>
                 <td>{{$query->name}}</td>
                 <td>{{$query->id}}</td>
             </tr>
