@@ -1,5 +1,9 @@
 @extends('layout')
 
+@section('css')
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+@stop
+
 @section('content')
     <table class="table table-striped sortable">
         <thead>
@@ -13,7 +17,7 @@
                 <th>High</th>
                 <th>Delta</th>
                 <th>Volume</th>
-                <th>Indice 1</th>
+                <th><b title="((Open + Close) * Volume) / 2">Indice 1</b></th>
             </tr>
         </thead>
         @foreach ($datas as $data)
@@ -35,9 +39,21 @@
 
 @section('js')
     <script src="//cdn.jsdelivr.net/tablesorter/2.13.3/js/jquery.tablesorter.min.js"></script>
+    <script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script >
         $(function() {
             $(".sortable").tablesorter();
         });
     </script>
+    <script>
+        $(function() {
+            $( document ).tooltip();
+        });
+    </script>
+  <style>
+  label {
+    display: inline-block;
+    width: 5em;
+  }
+  </style>
 @stop
