@@ -32,8 +32,11 @@
       </div>
     </div>
     <div class="container">
-      @if(Session::has('message'))
-        <div class="alert alert-success">{{ Session::get('message') }}</div>
+      @if(Session::has('message-success'))
+        <div class="alert alert-success">{{ Session::get('message-success') }}</div>
+      @endif
+      @if(Session::has('message-error'))
+        <div class="alert alert-danger">{{ Session::get('message-error') }}</div>
       @endif
       @yield('content')
     </div>

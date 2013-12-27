@@ -17,10 +17,14 @@ class QueriesController extends BaseController {
     public function postNew()
     {
         $query = new Query;
+        $query->owner_id = Session::get('userId');
+        $query->starred = False;
         $query->name = Input::get('name');
-        $query->filters = Input::get('filters');
+        $query->filters = json_encode(Input::get('filters'));
+        $query->execution_times = 0;
+        $query->last_executed_at = Carbon::now();
         $query->save();
-        return Redirect::to('/queries');
+        return Redirect::to('/queries')->with('message-success', 'Query saved successfully!');
     }
 
     public function getQuery()
