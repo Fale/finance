@@ -28,20 +28,35 @@ class QueriesController extends BaseController {
         return Redirect::to('/queries')->with('message-success', 'Query saved successfully!');
     }
 
+    public function putStar()
+    {
+        $query = Query::find(Input::get('id'));
+        $query->starred = true;
+        $query->save();
+        return true;
+    }
+
+    public function putUnstar()
+    {
+        $query = Query::find(Input::get('id'));
+        $query->starred = false;
+        $query->save();
+        return true;
+    }
+
     public function getQuery()
     {
         $qid = Input::get('query');
 
         $query = DB::table('node');
 
-        foreach( $filters as $filter){
-        if ($published == true)
-            $query->where('published', '=', 1);
+        foreach ($filters as $filter) {
+            if ($published == true)
+                $query->where('published', '=', 1);
 
-        if (isset($year))
-            $query->where('year', '>', $year);
+            if (isset($year))
+                $query->where('year', '>', $year);
         }
         $result = $query->get();
-
     }
 }
