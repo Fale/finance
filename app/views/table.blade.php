@@ -2,6 +2,23 @@
 
 @section('css')
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+    <style type="text/css">
+        th.tablesorter-headerAsc {
+            background: #EEE;
+        }
+
+        th.tablesorter-headerDesc {
+            background: #EEE;
+        }
+
+        th.tablesorter-header {
+            background-image: url(http://cdn.jsdelivr.net/tablesorter/2.13.3/css/images/ice-unsorted.gif);
+            cursor: pointer;
+            background-repeat: no-repeat;
+            background-position: center right;
+            padding-right: 20px;
+        }
+    </style>
 @stop
 
 @section('content')
