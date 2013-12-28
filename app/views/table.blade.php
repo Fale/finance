@@ -18,6 +18,13 @@
             background-position: center right;
             padding-right: 20px;
         }
+
+        label {
+            display: inline-block;
+            width: 5em;
+        }
+
+        .tableFloatingHeaderOriginal th { background-color: #fff; border-bottom: 1px solid #DDD;}
     </style>
 @stop
 
@@ -67,20 +74,16 @@
 @section('js')
     <script src="//cdn.jsdelivr.net/tablesorter/2.13.3/js/jquery.tablesorter.min.js"></script>
     <script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="/jquery.stickytableheaders.min.js"></script>
     <script >
         $(function() {
             $(".sortable").tablesorter();
         });
-    </script>
-    <script>
+
         $(function() {
             $( document ).tooltip();
         });
+
+        $('table').stickyTableHeaders({fixedOffset: 50});
     </script>
-  <style>
-  label {
-    display: inline-block;
-    width: 5em;
-  }
-  </style>
 @stop
