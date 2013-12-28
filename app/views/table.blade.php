@@ -27,7 +27,7 @@
         <p> You can change this query in the following methods:
         <ul>
             <li>?percentile=NUMBER (default: 10) change the percentile of threshold</li>
-            <li>?date=DATE (default: {{Carbon::now()->subWeek()}} date since the stocks will appear</li>
+            <li>?date=DATE (default: {{Carbon::now()->subWeek()->format('Y-m-d')}}) date since the stocks will appear</li>
         </ul>
         If you want to set more than a value you can use ?VAR1=VAL1&amp;VAR2=VAL2&amp;VAR3=VAL3...
         </p>
