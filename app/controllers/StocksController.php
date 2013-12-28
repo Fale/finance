@@ -21,7 +21,7 @@ class StocksController extends BaseController {
 
         $id = Stock::where('symbol', $symbol)->pluck('id');
         $file_headers = @get_headers($url);
-        if($file_headers[0] == 'HTTP/1.1 404 Not Found')
+        if($file_headers[0] == 'HTTP/1.1 404 Not Found' OR $file_headers[0] == 'failed to open stream: HTTP request failed!')
             return 0;
         else
             $handle = fopen($url, 'r');

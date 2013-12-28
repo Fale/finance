@@ -48,7 +48,7 @@
                 <td>{{$data->high}}</td>
                 <td>{{$data->absdelta}}</td>
                 <td>{{$data->volume}}</td>
-                <td>{{(($data->close + $data->open) * $data->volume) / 2}}</td>
+                <td>{{floor((($data->close + $data->open) * $data->volume) / 2)}}</td>
             </tr>
         @endforeach
     </table>
