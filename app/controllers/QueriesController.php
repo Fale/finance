@@ -33,7 +33,7 @@ class QueriesController extends BaseController {
         $query = Query::find(Input::get('id'));
         $query->starred = true;
         $query->save();
-        return true;
+        return Response::make($query->id, 200);
     }
 
     public function putUnstar()
@@ -41,7 +41,7 @@ class QueriesController extends BaseController {
         $query = Query::find(Input::get('id'));
         $query->starred = false;
         $query->save();
-        return true;
+        return Response::make($query->id, 200);
     }
 
     public function getQuery()

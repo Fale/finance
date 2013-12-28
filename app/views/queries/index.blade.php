@@ -33,26 +33,26 @@
 
 @section('js')
   <script>
-    $( "span.glyphicon-star-empty" ).click(function() {
+    $('body').on('click', 'span.glyphicon-star-empty', function() {
         $.ajax({
-          type: "POST",
+          type: "PUT",
           url: "/queries/star",
           data: { id: $(this).attr('id') }
         })
-          .done(function( msg ) {
-            $(this).removeClass('glyphicon-star-empty')
-            $(this).addClass('glyphicon-star')
+          .done(function(i) {
+            $("span#" + i).removeClass('glyphicon-star-empty');
+            $("span#" + i).addClass('glyphicon-star');
           });
     });
-    $( "span.glyphicon-star" ).click(function() {
+    $('body').on('click', 'span.glyphicon-star', function() {
         $.ajax({
-          type: "POST",
+          type: "PUT",
           url: "/queries/unstar",
           data: { id: $(this).attr('id') }
         })
-          .done(function( msg ) {
-            $(this).removeClass('glyphicon-star')
-            $(this).addClass('glyphicon-star-empty')
+          .done(function(i) {
+            $("span#" + i).removeClass('glyphicon-star');
+            $("span#" + i).addClass('glyphicon-star-empty');
           });
     });
   </script>
