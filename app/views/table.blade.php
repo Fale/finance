@@ -51,7 +51,7 @@
                 <th>High</th>
                 <th>Delta</th>
                 <th>Volume</th>
-                <th title="((Open + Close) * Volume) / 2">Indice 1</th>
+                <th title="((Open + Close) * Volume) / 2 / 5000">Index A</th>
             </tr>
         </thead>
         @foreach ($datas as $data)
@@ -65,7 +65,7 @@
                 <td>{{$data->high}}</td>
                 <td>{{$data->absdelta}}</td>
                 <td>{{$data->volume}}</td>
-                <td>{{floor((($data->close + $data->open) * $data->volume) / 2)}}</td>
+                <td>{{floor((($data->close + $data->open) * $data->volume) / 2 / 5000)}}</td>
             </tr>
         @endforeach
     </table>
