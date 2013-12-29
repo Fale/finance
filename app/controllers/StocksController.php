@@ -63,16 +63,19 @@ class StocksController extends BaseController {
     public function getPeaks()
     {
         $percentile = Input::get('percentile', 10);
-        $date = Input::get('date', Carbon::now()->subWeek());
+        $from = Input::get('from', Carbon::now()->subWeek());
+        $to = Input::get('to', Carbon::now());
         $market = Input::get('market', 'NASDAQ');
 
         if ($percentile >= 0)
             $values = Value::where('delta', '>=', $percentile)
-                ->where('date', '>=', $date)
+                ->where('date', '>=', $from)
+                ->where('date', '<=', $to)
                 ->get();
         else
             $values = Value::where('delta', '<=', $percentile)
-                ->where('date', '>=', $date)
+                ->where('date', '>=', $from)
+                ->where('date', '<=', $to)
                 ->get();
 
         return View::make('table', array('datas' => $values));
