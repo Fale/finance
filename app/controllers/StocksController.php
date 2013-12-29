@@ -67,9 +67,13 @@ class StocksController extends BaseController {
         $market = Input::get('market', 'NASDAQ');
 
         if ($percentile >= 0)
-            $values = Value::where('delta', '>=', $percentile)->where('date', '>=', $date)->get();
+            $values = Value::where('delta', '>=', $percentile)
+                ->where('date', '>=', $date)
+                ->get();
         else
-            $values = Value::where('delta', '<=', $percentile)->where('date', '>=', $date)->get();
+            $values = Value::where('delta', '<=', $percentile)
+                ->where('date', '>=', $date)
+                ->get();
 
         return View::make('table', array('datas' => $values));
     }
