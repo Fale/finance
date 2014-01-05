@@ -68,7 +68,7 @@ return array(
 			'host'     => 'localhost',
 			'database' => 'finance',
 			'username' => 'www-data',
-			'password' => 'dellelinux',
+			'password' => 'finance',
 			'charset'  => 'utf8',
 			'prefix'   => '',
 			'schema'   => 'public',
