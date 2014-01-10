@@ -26,8 +26,16 @@
 
         .tableFloatingHeaderOriginal th { background-color: #fff; border-bottom: 1px solid #DDD;}
 
-        span.positive {}
-        span.negative {color: red;}
+        span.positive {
+            float: right;
+            margin-right: 50%;
+        }
+
+        span.negative {
+            float: right;
+            margin-right: 50%;
+            color: red;
+        }
     </style>
 @stop
 
