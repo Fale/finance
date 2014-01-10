@@ -49,10 +49,10 @@
                 <td>{{$data->date}}</td>
                 <td>{{$data->open}}</td>
                 <td>{{$data->close}}</td>
-                <td>{{round($data->delta, 2)}}</td>
+                <td>{{number_format($data->delta, 2)}}</td>
                 <td>{{$data->low}}</td>
                 <td>{{$data->high}}</td>
-                <td>{{round($data->absdelta, 2)}}</td>
+                <td>{{number_format($data->absdelta, 2)}}</td>
                 <td>{{$data->volume}}</td>
                 <td>{{floor((($data->close + $data->open) * $data->volume) / 2 / 5000)}}</td>
             </tr>
