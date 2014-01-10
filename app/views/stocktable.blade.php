@@ -55,7 +55,7 @@
                 <td><span class="{{$data->delta >= 0 ? 'positive' : 'negative'}}">{{number_format($data->delta, 2)}}</span></td>
                 <td>{{$data->low}}</td>
                 <td>{{$data->high}}</td>
-                <td>{{number_format($data->absdelta, 2)}}</td>
+                <td><span class="{{$data->absdelta >= 0 ? 'positive' : 'negative'}}">{{number_format($data->absdelta, 2)}}</span></td>
                 <td>{{$data->volume}}</td>
                 <td>{{floor((($data->close + $data->open) * $data->volume) / 2 / 5000)}}</td>
             </tr>
