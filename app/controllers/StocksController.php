@@ -44,9 +44,9 @@ class StocksController extends BaseController {
             $datas[$data[0]]['volume'] = (int) $data[5];
             $datas[$data[0]]['delta'] = (($data[4] - $data[1]) / $data[1]) * 100;
             if ($data[2] >= $data[3])
-                $datas[$data[0]]['absdelta'] = (($data[2] - $data[3]) / $data[2]) * 100;
+                $datas[$data[0]]['absdelta'] = (($data[2] - $data[3]) / $data[3]) * 100;
             else
-                $datas[$data[0]]['absdelta'] = -((($data[3] - $data[2]) / $data[3]) * 100);
+                $datas[$data[0]]['absdelta'] = -((($data[3] - $data[2]) / $data[2]) * 100);
         }
 
         $present = Value::where('stock_id', $id)->lists('id', 'date');
