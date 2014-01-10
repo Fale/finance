@@ -8,7 +8,7 @@ class StockController extends BaseController {
 
     public function stock($name)
     {
-        $stockID = Stock::where('symbol', $name)->pluck('id');
+        $stockID = Stock::where('symbol', strtoupper($name))->pluck('id');
         $values = Value::where('stock_id', $stockID)
             ->orderBy('date', 'desc')
             ->take(10)
