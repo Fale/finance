@@ -35,10 +35,10 @@
                 <th>Date</th>
                 <th>Open</th>
                 <th>Close</th>
-                <th>Delta</th>
+                <th>Delta %</th>
                 <th>Low</th>
                 <th>High</th>
-                <th>Delta</th>
+                <th>Delta %</th>
                 <th>Volume</th>
                 <th title="((Open + Close) * Volume) / 2 / 5000">Index A</th>
             </tr>
@@ -48,10 +48,10 @@
                 <td>{{$data->date}}</td>
                 <td>{{$data->open}}</td>
                 <td>{{$data->close}}</td>
-                <td>{{$data->delta}}</td>
+                <td>{{round($data->delta, 2)}}</td>
                 <td>{{$data->low}}</td>
                 <td>{{$data->high}}</td>
-                <td>{{$data->absdelta}}</td>
+                <td>{{round($data->absdelta, 2)}}</td>
                 <td>{{$data->volume}}</td>
                 <td>{{floor((($data->close + $data->open) * $data->volume) / 2 / 5000)}}</td>
             </tr>
