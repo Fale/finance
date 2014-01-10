@@ -4,7 +4,7 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
-class ImportFast extends Command {
+class ImportFast extends Import {
 
     /**
      * The console command name.
@@ -38,12 +38,11 @@ class ImportFast extends Command {
     public function fire()
     {
         DB::connection()->disableQueryLog();
-        $controller = new StocksController();
         $values = Value::groupBy('stock_id')->lists('stock_id');
         $stocks = Stock::where('active', TRUE)->whereNotIn('id', $values)->orderBy('id')->get();
         foreach ($stocks as $stock) {
             echo $stock->id . '. ' . $stock->symbol . "...";
-            $imported = $controller->getImport('NASDAQ', $stock->symbol);
+            $imported = $this->getImport('NASDAQ', $stock->symbol);
             echo " done (" . $imported . " imported)\n";
         }
 
