@@ -25,6 +25,9 @@
         }
 
         .tableFloatingHeaderOriginal th { background-color: #fff; border-bottom: 1px solid #DDD;}
+
+        span.positive {}
+        span.negative {color: red;}
     </style>
 @stop
 
@@ -49,7 +52,7 @@
                 <td>{{$data->date}}</td>
                 <td>{{$data->open}}</td>
                 <td>{{$data->close}}</td>
-                <td>{{number_format($data->delta, 2)}}</td>
+                <td><span class="{{$data->delta >= 0 ? 'positive' : 'negative'}}">{{number_format($data->delta, 2)}}</span></td>
                 <td>{{$data->low}}</td>
                 <td>{{$data->high}}</td>
                 <td>{{number_format($data->absdelta, 2)}}</td>
