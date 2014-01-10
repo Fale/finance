@@ -29,6 +29,7 @@
 @stop
 
 @section('content')
+    <h1>{{$stock->symbol}}: {{$stock->name}}</h1>
     <table class="table table-striped sortable">
         <thead>
             <tr>

@@ -8,13 +8,13 @@ class StockController extends BaseController {
 
     public function stock($name)
     {
-        $stockID = Stock::where('symbol', strtoupper($name))->pluck('id');
-        $values = Value::where('stock_id', $stockID)
+        $stock = Stock::where('symbol', strtoupper($name))->first();
+        $values = Value::where('stock_id', $stock->id)
             ->orderBy('date', 'desc')
             ->take(10)
             ->get();
 
-        return View::make('stocktable', array('datas' => $values));
+        return View::make('stocktable', array('datas' => $values, 'stock' => $stock));
     }
 
 }
