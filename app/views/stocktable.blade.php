@@ -43,7 +43,6 @@
     <table class="table table-striped sortable">
         <thead>
             <tr>
-                <th>Symbol</th>
                 <th>Date</th>
                 <th>Open</th>
                 <th>Close</th>
@@ -57,7 +56,6 @@
         </thead>
         @foreach ($datas as $data)
             <tr>
-                <td>{{link_to('stock/' . $data->stock->symbol, $data->stock->symbol)}}</td>
                 <td>{{$data->date}}</td>
                 <td>{{$data->open}}</td>
                 <td>{{$data->close}}</td>

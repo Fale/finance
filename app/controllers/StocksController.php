@@ -20,4 +20,5 @@ class StocksController extends BaseController {
 
         return View::make('table', array('datas' => $values));
     }
+
 }
