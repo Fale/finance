@@ -11,7 +11,7 @@ class StockController extends BaseController {
         $stock = Stock::where('symbol', strtoupper($name))->first();
         $values = Value::where('stock_id', $stock->id)
             ->orderBy('date', 'desc')
-            ->take(10)
+            ->take(20)
             ->get();
 
         return View::make('stocktable', array('datas' => $values, 'stock' => $stock));
