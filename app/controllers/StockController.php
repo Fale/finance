@@ -8,10 +8,11 @@ class StockController extends BaseController {
 
     public function stock($name)
     {
+        $days = Input::get('days', 100);
         $stock = Stock::where('symbol', strtoupper($name))->first();
         $values = Value::where('stock_id', $stock->id)
             ->orderBy('date', 'desc')
-            ->take(20)
+            ->take($days)
             ->get();
 
         return View::make('stocktable', array('datas' => $values, 'stock' => $stock));
