@@ -1,45 +1,43 @@
-@extends('layouts.scaffold')
+@extends('layout')
 
-@section('main')
+@section('css')
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <style>
+        .error { color: red; font-style: italic; }
+    </style>
+@stop
 
-<h1>Edit Note</h1>
+@section('content')
+
+<h1>Create Note</h1>
 {{ Form::model($note, array('method' => 'PATCH', 'route' => array('notes.update', $note->id))) }}
-	<ul>
-        <li>
-            {{ Form::label('title', 'Title:') }}
-            {{ Form::text('title') }}
-        </li>
-
-        <li>
-            {{ Form::label('text', 'Text:') }}
-            {{ Form::textarea('text') }}
-        </li>
-
-        <li>
-            {{ Form::label('market_id', 'Market_id:') }}
-            {{ Form::input('number', 'market_id') }}
-        </li>
-
-        <li>
-            {{ Form::label('stock_id', 'Stock_id:') }}
-            {{ Form::input('number', 'stock_id') }}
-        </li>
-
-        <li>
-            {{ Form::label('type_id', 'Type_id:') }}
-            {{ Form::input('number', 'type_id') }}
-        </li>
-
-        <li>
-            {{ Form::label('happens_on', 'Happens_on:') }}
-            {{ Form::text('happens_on') }}
-        </li>
-
-		<li>
-			{{ Form::submit('Update', array('class' => 'btn btn-info')) }}
-			{{ link_to_route('notes.show', 'Cancel', $note->id, array('class' => 'btn')) }}
-		</li>
-	</ul>
+    <div class="form-group">
+        {{ Form::label('title', 'Title:') }}
+        {{ Form::text('title', NULL, array('class' => 'form-control')) }}
+    </div>
+    <div class="form-group">
+        {{ Form::label('text', 'Text:') }}
+        {{ Form::textarea('text', NULL, array('class' => 'form-control')) }}
+    </div>
+    <div class="form-group">
+        {{ Form::label('market_id', 'Market:') }}
+        {{ Form::select('market_id', Market::lists('name', 'id'), NULL, array('class' => 'form-control')) }}
+    </div>
+    <div class="form-group">
+        {{ Form::label('stock_id', 'Stock:') }}
+        {{ Form::select('stock_id', Stock::lists('symbol', 'id'), NULL, array('class' => 'form-control')) }}
+    </div>
+    <div class="form-group">
+        {{ Form::label('type_id', 'Type:') }}
+        {{ Form::select('type_id', NoteType::lists('name', 'id'), NULL, array('class' => 'form-control')) }}
+    </div>
+    <div class="form-group">
+        {{ Form::label('happens_on', 'Date:') }}
+        {{ Form::text('happens_on', NULL, array('class' => 'form-control datepicker')) }}
+    </div>
+    <div class="form-group">
+        {{ Form::submit('Submit', array('class' => 'btn btn-info')) }}
+    </div>
 {{ Form::close() }}
 
 @if ($errors->any())
@@ -48,4 +46,14 @@
 	</ul>
 @endif
 
+@stop
+
+
+@section('js')
+    <script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            $(".datepicker").datepicker({ dateFormat: "yy-mm-dd" });
+        });
+    </script>
 @stop

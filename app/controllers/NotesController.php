@@ -21,7 +21,7 @@ class NotesController extends BaseController {
 	 */
 	public function index()
 	{
-		$notes = $this->note->all();
+		$notes = $this->note->orderBy('id')->get();
 
 		return View::make('notes.index', compact('notes'));
 	}
