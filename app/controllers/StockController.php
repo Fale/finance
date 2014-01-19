@@ -22,7 +22,7 @@ class StockController extends BaseController {
 
         $notes = Note::where('stock_id', $stock->id)->get();
 
-        return View::make('stocktable', array('datas' => $values, 'stock' => $stock, 'notes' => $notes));
+        return View::make('stocks.show', array('datas' => $values, 'stock' => $stock, 'notes' => $notes));
     }
 
 }
