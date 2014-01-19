@@ -44,8 +44,8 @@
     @foreach ($notes as $note)
         <div class="bs-callout bs-callout-info">
             <h4>{{{$note->title}}}</h4>
-        <p>{{{$note->text}}}</p>
-    </div>
+            <p>{{{$note->text}}}</p>
+        </div>
     @endforeach
     <table class="table table-striped sortable">
         <thead>
