@@ -45,3 +45,33 @@ body {
 .bs-callout-info h4 {
   color: #34789a;
 }
+
+/* Notes */
+.note-split {
+  background-color: #fdf7f7;
+  border-color: #eed3d7;
+}
+.note-split h4 {
+  color: #b94a48;
+}
+.note-meeting {
+  background-color: #faf8f0;
+  border-color: #faebcc;
+}
+.note-meeting h4 {
+  color: #8a6d3b;
+}
+.note-important {
+  background-color: #faf8f0;
+  border-color: #faebcc;
+}
+.note-important h4 {
+  color: #8a6d3b;
+}
+.note-generic {
+  background-color: #f4f8fa;
+  border-color: #bce8f1;
+}
+.note-generic h4 {
+  color: #34789a;
+}
