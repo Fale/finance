@@ -15,7 +15,9 @@ class StockController extends BaseController {
             ->take($days)
             ->get();
 
-        return View::make('stocktable', array('datas' => $values, 'stock' => $stock));
+        $notes = Note::where('stock_id', $stock->id)->get();
+
+        return View::make('stocktable', array('datas' => $values, 'stock' => $stock, 'notes' => $notes));
     }
 
 }

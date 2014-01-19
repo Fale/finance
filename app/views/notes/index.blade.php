@@ -12,10 +12,10 @@
 			<tr>
 				<th>Title</th>
 				<th>Text</th>
-				<th>Market_id</th>
-				<th>Stock_id</th>
-				<th>Type_id</th>
-				<th>Happens_on</th>
+				<th>Market</th>
+				<th>Stock</th>
+				<th>Type</th>
+				<th>Date</th>
 			</tr>
 		</thead>
 
@@ -24,10 +24,10 @@
 				<tr>
 					<td>{{{ $note->title }}}</td>
 					<td>{{{ $note->text }}}</td>
-					<td>{{{ $note->market_id }}}</td>
-					<td>{{{ $note->stock_id }}}</td>
-					<td>{{{ $note->type_id }}}</td>
-					<td>{{{ $note->happens_on }}}</td>
+					<td>{{{ $note->market->name }}}</td>
+					<td>{{{ $note->stock->symbol }}}</td>
+					<td>{{{ $note->type->name }}}</td>
+					<td>{{ Carbon::parse($note->happens_on)->format('d/m/Y') }}</td>
                     <td>{{ link_to_route('notes.edit', 'Edit', array($note->id), array('class' => 'btn btn-info')) }}</td>
                     <td>
                         {{ Form::open(array('method' => 'DELETE', 'route' => array('notes.destroy', $note->id))) }}

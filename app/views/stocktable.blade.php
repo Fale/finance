@@ -41,6 +41,12 @@
 
 @section('content')
     <h1>{{$stock->symbol}}: {{$stock->name}} ({{$stock->sector}})</h1>
+    @foreach ($notes as $note)
+        <div class="bs-callout bs-callout-info">
+            <h4>{{{$note->title}}}</h4>
+        <p>{{{$note->text}}}</p>
+    </div>
+    @endforeach
     <table class="table table-striped sortable">
         <thead>
             <tr>

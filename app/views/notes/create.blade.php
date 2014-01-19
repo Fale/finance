@@ -1,9 +1,10 @@
 @extends('layout')
 
 @section('css')
-        <style>
-            .error { color: red; font-style: italic; }
-        </style>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <style>
+        .error { color: red; font-style: italic; }
+    </style>
 @stop
 
 @section('content')
@@ -25,15 +26,15 @@
     </div>
     <div class="form-group">
         {{ Form::label('stock_id', 'Stock:') }}
-        {{ Form::select('stock_id_id', Stock::lists('symbol', 'id'), '', array('class' => 'form-control')) }}
+        {{ Form::select('stock_id', Stock::lists('symbol', 'id'), '', array('class' => 'form-control')) }}
     </div>
     <div class="form-group">
         {{ Form::label('type_id', 'Type:') }}
-        {{ Form::input('number', 'type_id') }}
+        {{ Form::select('type_id', NoteType::lists('name', 'id'), '', array('class' => 'form-control')) }}
     </div>
     <div class="form-group">
-        {{ Form::label('happens_on', 'Happens_on:') }}
-        {{ Form::text('happens_on') }}
+        {{ Form::label('happens_on', 'Date:') }}
+        {{ Form::text('happens_on', '', array('class' => 'form-control datepicker')) }}
     </div>
     <div class="form-group">
         {{ Form::submit('Submit', array('class' => 'btn btn-info')) }}
@@ -49,3 +50,11 @@
 @stop
 
 
+@section('js')
+    <script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            $(".datepicker").datepicker({ dateFormat: "yy-mm-dd" });
+        });
+    </script>
+@stop
