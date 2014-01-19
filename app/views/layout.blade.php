@@ -22,6 +22,7 @@
             <ul class="nav navbar-nav">
               <li{{ Request::is('stocks/peaks') ? ' class="active"' : '' }}>{{HTML::link('/stocks/peaks','Peaks')}}</li>
               <li{{ Request::is('queries') ? ' class="active"' : '' }}>{{HTML::link('/queries','Queries')}}</li>
+              <li{{ Request::is('notes') ? ' class="active"' : '' }}>{{HTML::link('/notes','Notes')}}</li>
             </ul>
           @endif
           <ul class="nav navbar-nav navbar-right">

@@ -5,3 +5,10 @@ Route::get('/stock/{stock}', array('before' => 'auth', 'uses' => 'StockControlle
 Route::controller('stocks', 'StocksController');
 Route::controller('users', 'UsersController');
 Route::controller('queries', 'QueriesController');
+
+
+Route::resource('notes', 'NotesController');
+
+Route::resource('notes', 'NotesController');
+
+Route::resource('notes', 'NotesController');

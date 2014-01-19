@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder {
 			$this->call('ValuesSeeder');
 		if (!User::count())
 			$this->call('UsersSeeder');
+		$this->call('NotesTableSeeder');
 	}
 
 }
