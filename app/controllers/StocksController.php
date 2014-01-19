@@ -15,6 +15,9 @@ class StocksController extends BaseController {
     {
         $days = Input::get('days', 100);
         $stock = Stock::where('symbol', strtoupper($name))->first();
+        if(!$stock)
+            App::abort(404);
+
         $values = Value::where('stock_id', $stock->id)
             ->orderBy('date', 'desc')
             ->take($days)

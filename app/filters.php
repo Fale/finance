@@ -78,3 +78,16 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+/*
+|--------------------------------------------------------------------------
+| HTTP Errors
+|--------------------------------------------------------------------------
+|
+| Misc HTTP errors
+|
+*/
+App::missing(function($exception)
+{
+    return Response::view('errors.missing', array(), 404);
+});
