@@ -11,7 +11,6 @@
 		<thead>
 			<tr>
 				<th>Title</th>
-				<th>Text</th>
 				<th>Market</th>
 				<th>Stock</th>
 				<th>Type</th>
@@ -23,7 +22,6 @@
 			@foreach ($notes as $note)
 				<tr>
 					<td>{{{ $note->title }}}</td>
-					<td>{{{ $note->text }}}</td>
 					<td>{{{ $note->market->name }}}</td>
 					<td>{{{ $note->stock->symbol }}}</td>
 					<td>{{{ $note->type->name }}}</td>
