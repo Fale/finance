@@ -20,9 +20,10 @@
         <div class="collapse navbar-collapse">
           @if(Auth::check())
             <ul class="nav navbar-nav">
-              <li{{ Request::is('stocks/peaks') ? ' class="active"' : '' }}>{{HTML::link('/stocks/peaks','Peaks')}}</li>
+              <li{{ Request::is('peaks') ? ' class="active"' : '' }}>{{HTML::link('/peaks','Peaks')}}</li>
+              <li{{ Request::is('stock*') ? ' class="active"' : '' }}>{{HTML::link('/stock','Stocks')}}</li>
               <li{{ Request::is('queries') ? ' class="active"' : '' }}>{{HTML::link('/queries','Queries')}}</li>
-              <li{{ Request::is('notes') ? ' class="active"' : '' }}>{{HTML::link('/notes','Notes')}}</li>
+              <li{{ Request::is('notes*') ? ' class="active"' : '' }}>{{HTML::link('/notes','Notes')}}</li>
             </ul>
           @endif
           <ul class="nav navbar-nav navbar-right">

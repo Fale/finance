@@ -6,6 +6,11 @@ class StockController extends BaseController {
         $this->beforeFilter('auth');
     }
 
+    public function getList()
+    {
+        return View::make('stocks.index', array('stocks' => Stock::get()));
+    }
+
     public function stock($name)
     {
         $days = Input::get('days', 100);
