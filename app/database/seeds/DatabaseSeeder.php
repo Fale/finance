@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder {
         if (!User::count())
             $this->call('UsersSeeder');
         if (!NoteType::count())
-            $this->call('NotesTypesSeeder');
+            $this->call('NoteTypesSeeder');
         if (!Note::count())
             $this->call('NotesTableSeeder');
     }
