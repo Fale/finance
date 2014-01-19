@@ -3,6 +3,10 @@
 @section('css')
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
     <style type="text/css">
+        h1 a {
+            float: right;
+        }
+
         th.tablesorter-headerAsc {
             background: #EEE;
         }
@@ -40,7 +44,10 @@
 @stop
 
 @section('content')
-    <h1>{{$stock->symbol}}: {{$stock->name}} ({{$stock->sector}})</h1>
+    <h1>
+        {{$stock->symbol}}: {{$stock->name}} ({{$stock->sector}})
+        {{link_to('/notes/create?market=' . $stock->market->id . '&stock=' . $stock->id, 'Add note', array('class' => 'btn btn-primary btn-large'))}}
+    </h1>
     @foreach ($notes as $note)
         <div class="bs-callout note-{{$note->type->html}}">
             <h4>{{{Carbon::parse($note->happens_on)->format('d/m/Y')}}} - {{{$note->title}}}</h4>
