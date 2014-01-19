@@ -6,19 +6,23 @@ class StocksController extends BaseController {
         $this->beforeFilter('auth');
     }
 
-    public function getPeaks()
+    public function getList()
     {
-        if (Input::get('percentile', 10) >= 0)
-            $deltaSymbol = '>=';
-        else
-            $deltaSymbol = '<=';
+        return View::make('stocks.index', array('stocks' => Stock::get()));
+    }
 
-        $values = Value::where('delta', $deltaSymbol, Input::get('percentile', 10))
-            ->where('date', '>=', Input::get('from', Carbon::now()->subWeek()))
-            ->where('date', '<=', Input::get('to', Carbon::now()))
+    public function stock($name)
+    {
+        $days = Input::get('days', 100);
+        $stock = Stock::where('symbol', strtoupper($name))->first();
+        $values = Value::where('stock_id', $stock->id)
+            ->orderBy('date', 'desc')
+            ->take($days)
             ->get();
 
-        return View::make('table', array('datas' => $values));
+        $notes = Note::where('stock_id', $stock->id)->get();
+
+        return View::make('stocks.show', array('datas' => $values, 'stock' => $stock, 'notes' => $notes));
     }
 
 }
