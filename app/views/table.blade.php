@@ -66,7 +66,7 @@
                 <td>{{$data->high}}</td>
                 <td>{{$data->absdelta}}</td>
                 <td>{{$data->volume}}</td>
-                <td>{{floor((($data->close + $data->open) * $data->volume) / 2 / 5000)}}</td>
+                <td>{{$data->indexa}}</td>
             </tr>
         @endforeach
     </table>

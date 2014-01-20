@@ -78,7 +78,7 @@
                 <td>{{$data->high}}</td>
                 <td><span class="{{$data->absdelta >= 0 ? 'positive' : 'negative'}}">{{number_format($data->absdelta, 2)}}</span></td>
                 <td>{{$data->volume}}</td>
-                <td>{{floor((($data->close + $data->open) * $data->volume) / 2 / 5000)}}</td>
+                <td>{{$data->indexa}}</td>
             </tr>
         @endforeach
     </table>
