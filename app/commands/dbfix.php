@@ -37,6 +37,7 @@ class dbfix extends Command {
      */
     public function fire()
     {
+        DB::connection()->disableQueryLog();
         while (Value::where('delta', NULL)->count() > 0) {
             $this->parse();
         }
