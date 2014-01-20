@@ -9,7 +9,7 @@
 
 @section('content')
 
-<h1>Create Note</h1>
+<h1>Create Note {{Input::get('stock') ? 'for ' . Stock::where('id', Input::get('stock'))->pluck('name') : ''}}</h1>
 
 {{ Form::open(array('role' => 'form', 'route' => 'notes.store')) }}
     <div class="form-group">
@@ -20,14 +20,18 @@
         {{ Form::label('text', 'Text:') }}
         {{ Form::textarea('text', NULL, array('class' => 'form-control')) }}
     </div>
+    @if(!Input::get('market'))
     <div class="form-group">
         {{ Form::label('market_id', 'Market:') }}
         {{ Form::select('market_id', Market::lists('name', 'id'), Input::get('market'), array('class' => 'form-control')) }}
     </div>
+    @endif
+    @if(!Input::get('stock'))
     <div class="form-group">
         {{ Form::label('stock_id', 'Stock:') }}
         {{ Form::select('stock_id', Stock::lists('symbol', 'id'), Input::get('stock'), array('class' => 'form-control')) }}
     </div>
+    @endif
     <div class="form-group">
         {{ Form::label('type_id', 'Type:') }}
         {{ Form::select('type_id', NoteType::lists('name', 'id'), NULL, array('class' => 'form-control')) }}
