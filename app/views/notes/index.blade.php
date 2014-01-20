@@ -23,7 +23,7 @@
 				<tr>
 					<td>{{{ $note->title }}}</td>
 					<td>{{{ $note->market->name }}}</td>
-					<td>{{{ $note->stock->symbol }}}</td>
+					<td>{{ link_to('/stock/' . $note->stock->symbol, $note->stock->symbol) }}</td>
 					<td>{{{ $note->type->name }}}</td>
 					<td>{{ Carbon::parse($note->happens_on)->format('d/m/Y') }}</td>
                     <td>{{ link_to_route('notes.edit', 'Edit', array($note->id), array('class' => 'btn btn-info')) }}</td>
