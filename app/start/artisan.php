@@ -12,6 +12,7 @@
 */
 
 Artisan::add(new DbClean);
+Artisan::add(new dbfix);
 Artisan::add(new ImportAll);
 Artisan::add(new ImportFast);
 Artisan::add(new ImportNew);
