@@ -42,8 +42,9 @@ class Import extends Command {
             $datas[$data[0]]['high'] = $data[2];
             $datas[$data[0]]['low'] = $data[3];
             $datas[$data[0]]['volume'] = (int) $data[5];
-            $datas[$data[0]]['delta'] = (($data[4] - $data[1]) / $data[1]) * 100;
+            $datas[$data[0]]['ocdelta'] = (($data[4] - $data[1]) / $data[1]) * 100;
             $datas[$data[0]]['absdelta'] = (($data[2] - $data[3]) / $data[3]) * 100;
+            $datas[$data[0]]['indexa'] = floor((($data[4] + $data[1]) * $data[5]) / 2 / 5000);
         }
 
         $present = Value::where('stock_id', $id)->lists('id', 'date');
