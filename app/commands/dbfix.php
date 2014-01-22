@@ -45,7 +45,7 @@ class dbfix extends Command {
 
     public function parse()
     {
-        foreach (Value::where('delta', NULL)->limit(1000)->get() as $v)
+        foreach (Value::where('delta', NULL)->limit(100)->orderBy('date', 'desc')->get() as $v)
         {
             echo $v->stock->symbol . ": " . $v->date . "\n";
             $p = Value::where('stock_id', $v->stock->id)->where('date', '<', $v->date)->orderBy('date', 'desc')->pluck('close');

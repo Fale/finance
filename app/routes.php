@@ -1,6 +1,6 @@
 <?php
 
-Route::get('/', array('before' => 'auth', function() {return View::make('home');}));
+Route::get('/', array('before' => 'auth', function() {return View::make('index');}));
 Route::get('/stock', array('before' => 'auth', 'uses' => 'StocksController@getList'));
 Route::get('/stock/{stock}', array('before' => 'auth', 'uses' => 'StocksController@stock'));
 Route::get('peaks', array('uses' => 'PeaksController@getPeaks'));
