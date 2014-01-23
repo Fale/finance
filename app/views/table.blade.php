@@ -36,6 +36,8 @@
             <li>?percentile=NUMBER (default: 10) change the percentile of threshold</li>
             <li>?from=DATE (default: {{Carbon::now()->subWeek()->format('Y-m-d')}}) date since the stocks will appear</li>
             <li>?to=DATE (default: {{Carbon::now()->format('Y-m-d')}}) date until the stocks will appear</li>
+            <li>?volume=NUMBER (default: 1 000 000) minimum daily volume for the stock to appear</li>
+            <li>?indexa=NUMBER (default: 50) minimum Index A value for the stock to appear</li>
         </ul>
         If you want to set more than a value you can use ?VAR1=VAL1&amp;VAR2=VAL2&amp;VAR3=VAL3...
         </p>

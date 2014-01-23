@@ -16,6 +16,9 @@ class PeaksController extends BaseController {
         $values = Value::where('delta', $deltaSymbol, Input::get('percentile', 10))
             ->where('date', '>=', Input::get('from', Carbon::now()->subWeek()))
             ->where('date', '<=', Input::get('to', Carbon::now()))
+            ->where('volume', '>=', Input::get('volume', 1000000))
+            ->where('indexa', '>=', Input::get('indexa', 50))
+            ->orderBy('date', 'desc')
             ->get();
 
         return View::make('table', array('datas' => $values));
