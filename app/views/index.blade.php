@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    @foreach(Note::orderBy('happens_on')->get() as $note)
+    @foreach(Note::where('happens_on', '>=', Carbon::now())->orderBy('happens_on')->orderBy('stock_id')->get() as $note)
         <div class="bs-callout note-{{$note->type->html}}">
             <h4>
                 {{{Carbon::parse($note->happens_on)->format('d/m/Y')}}} - 

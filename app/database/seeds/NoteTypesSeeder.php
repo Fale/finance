@@ -13,6 +13,7 @@ class NoteTypesSeeder extends Seeder {
         NoteType::create(array('id' => 2, 'name' => 'Important', 'html' => 'important'));
         NoteType::create(array('id' => 3, 'name' => 'Meeting', 'html' => 'meeting'));
         NoteType::create(array('id' => 4, 'name' => 'Split', 'html' => 'split'));
+        NoteType::create(array('id' => 5, 'name' => 'Google', 'html' => 'google'));
     }
 
 }

@@ -37,8 +37,20 @@ class ImportNews extends Command {
      */
     public function fire()
     {
-        foreach (Stock::take(4)->get() as $stock)
-            $this->import($stock);
+        foreach (Stock::all() as $stock) {
+            echo $stock->symbol . '... ';
+            $notes = $this->import($stock);
+            if ($notes) {
+                foreach ($notes as $note)
+                    if (!Note::where('stock_id', $note->stock_id)
+                             ->where('happens_on', $note->happens_on)
+                             ->where('extid', $note->extid)
+                             ->count())
+                        $note->save();
+                echo  count($notes) . "\n";
+            } else
+                echo  "\n";
+        }
     }
 
 
@@ -46,13 +58,31 @@ class ImportNews extends Command {
     {
         $url = 'http://www.google.com/finance/events?q=' . $stock->market->code . ':' . $stock->symbol . '&output=json';
         $file_headers = @get_headers($url);
-        if($file_headers[0] == 'HTTP/1.1 404 Not Found' OR $file_headers[0] == 'HTTP/1.0 400 Bad Request')
+        if($file_headers[0] == 'HTTP/1.1 404 Not Found' OR
+           $file_headers[0] == 'HTTP/1.0 400 Bad Request' OR
+           $file_headers[0] == 'HTTP/1.0 500 Internal Server Error')
             return 0;
         $json = file_get_contents($url);
         $json = preg_replace("/([{,])([a-zA-Z][^: ]+):/", "$1\"$2\":", $json);
         $data = json_decode($json);
-        var_dump($json);
-        var_dump($data);
+        $notes = Array();
+        if (is_object($data)) {
+            if (isset($data->events)) {
+                foreach ($data->events as $event) {
+                    $note = new Note;
+                    $note->title = $event->desc;
+                    $note->market_id = $stock->market->id;
+                    $note->stock_id = $stock->id;
+                    $note->type_id = 5;
+                    $note->text = '';
+                    $note->happens_on = Carbon::parse($event->start_date);
+                    $note->extid = 'google-' . $event->cid;
+                    $notes[] = $note;
+                }
+            }
+        }
+        sleep(1);
+        return $notes;
     }
 
     /**
