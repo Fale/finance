@@ -37,7 +37,7 @@ class ImportNews extends Command {
      */
     public function fire()
     {
-        foreach (Stock::take(10)->get() as $stock)
+        foreach (Stock::take(4)->get() as $stock)
             $this->import($stock);
     }
 
@@ -49,25 +49,10 @@ class ImportNews extends Command {
         if($file_headers[0] == 'HTTP/1.1 404 Not Found' OR $file_headers[0] == 'HTTP/1.0 400 Bad Request')
             return 0;
         $json = file_get_contents($url);
-        #$json = $this->json_fix($json);
-        #$json = preg_replace("/(\n[\t ]*)([^\t ]+):/", "$1\"$2\":", $json);
         $json = preg_replace("/([{,])([a-zA-Z][^: ]+):/", "$1\"$2\":", $json);
         $data = json_decode($json);
         var_dump($json);
         var_dump($data);
-    }
-
-    private function json_fix($string)
-    {
-        $out = '';
-        $a = explode('"', $string);
-        for ($i = 0; $i < count($a); $i++) {
-            if ($i % 2)
-                $out .= $a[$i] . '"';
-            else
-                $out .= str_replace('/(\w+):/i', '\1', $a[$i]) . '"';
-        }
-        return substr($out, 0, -1);
     }
 
     /**
