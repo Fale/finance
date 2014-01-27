@@ -38,7 +38,6 @@ class ImportNews extends Command {
     public function fire()
     {
         foreach (Stock::all() as $stock) {
-            echo $stock->symbol . '... ';
             $notes = $this->import($stock);
             if ($notes) {
                 foreach ($notes as $note)
@@ -47,22 +46,19 @@ class ImportNews extends Command {
                              ->where('extid', $note->extid)
                              ->count())
                         $note->save();
-                echo  count($notes) . "\n";
-            } else
-                echo  "\n";
+            }
         }
     }
 
-
     public function import($stock)
     {
+        echo $stock->symbol . '... ';
         $url = 'http://www.google.com/finance/events?q=' . $stock->market->code . ':' . $stock->symbol . '&output=json';
-        $file_headers = @get_headers($url);
-        if($file_headers[0] == 'HTTP/1.1 404 Not Found' OR
-           $file_headers[0] == 'HTTP/1.0 400 Bad Request' OR
-           $file_headers[0] == 'HTTP/1.0 500 Internal Server Error')
-            return 0;
-        $json = file_get_contents($url);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $json = curl_exec($ch);
         $json = preg_replace("/([{,])([a-zA-Z][^: ]+):/", "$1\"$2\":", $json);
         $data = json_decode($json);
         $notes = Array();
@@ -81,7 +77,13 @@ class ImportNews extends Command {
                 }
             }
         }
-        sleep(1);
+        if ($notes)
+            echo count($notes) . "\n";
+        elseif ($data)
+            echo "\n";
+        else
+            echo $data . "\n";
+        curl_close($ch);
         return $notes;
     }
 
