@@ -79,10 +79,10 @@ class ImportNews extends Command {
         }
         if ($notes)
             echo count($notes) . "\n";
-        elseif ($data)
-            echo "\n";
+        elseif ($json)
+            var_dump($json);
         else
-            echo $data . "\n";
+            echo "\n";
         curl_close($ch);
         return $notes;
     }
@@ -104,7 +104,9 @@ class ImportNews extends Command {
      */
     protected function getOptions()
     {
-        return array();
+        return array(
+            array('stock', 's', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Stocks to check')
+        );
     }
 
 }
