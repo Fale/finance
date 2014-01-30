@@ -37,7 +37,11 @@ class ImportNews extends Command {
      */
     public function fire()
     {
-        foreach (Stock::all() as $stock) {
+        if ($this->option('stock'))
+            $stocks = Stock::whereIn('symbol', $this->option)->get();
+        else
+            $stocks = Stock::all();
+        foreach ($stocks as $stock) {
             $notes = $this->import($stock);
             if ($notes) {
                 foreach ($notes as $note)
