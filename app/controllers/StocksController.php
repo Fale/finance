@@ -23,7 +23,7 @@ class StocksController extends BaseController {
             ->take($days)
             ->get();
 
-        $notes = Note::where('stock_id', $stock->id)->get();
+        $notes = Note::where('stock_id', $stock->id)->where('happens_on', '>=', Carbon::now())->orderBy('happens_on')->get();
 
         return View::make('stocks.show', array('datas' => $values, 'stock' => $stock, 'notes' => $notes));
     }
