@@ -54,6 +54,7 @@
             <p>{{{$note->text}}}</p>
         </div>
     @endforeach
+    <div class="pull-right">{{link_to('/stock/' . $stock->symbol . '/notes', 'View past notes')}}</div>
     <table class="table table-striped sortable">
         <thead>
             <tr>

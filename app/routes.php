@@ -2,6 +2,7 @@
 
 Route::get('/', array('before' => 'auth', function() {return View::make('index');}));
 Route::get('/stock', array('before' => 'auth', 'uses' => 'StocksController@getList'));
+Route::get('/stock/{symbol}/notes', array('before' => 'auth', 'uses' => 'StocksController@notes'))->where('symbol', '[A-Za-z]+');
 Route::get('/stock/{stock}', array('before' => 'auth', 'uses' => 'StocksController@stock'));
 Route::get('peaks', array('uses' => 'PeaksController@getPeaks'));
 Route::controller('users', 'UsersController');
