@@ -37,6 +37,7 @@ class ImportNews extends Command {
      */
     public function fire()
     {
+        DB::connection()->disableQueryLog();
         if ($this->option('stock'))
             $stocks = Stock::whereIn('symbol', $this->option('stock'))->get();
         else
