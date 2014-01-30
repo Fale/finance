@@ -63,7 +63,7 @@ class ImportNews extends Command {
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $json = curl_exec($ch);
-        $json = preg_replace("/([{,])([a-zA-Z][^: ]+):/", "$1\"$2\":", $json);
+        $json = $this->jsonCleaner($json);
         $data = json_decode($json);
         $notes = Array();
         if (is_object($data)) {
@@ -89,6 +89,13 @@ class ImportNews extends Command {
             echo "\n";
         curl_close($ch);
         return $notes;
+    }
+
+    public function jsonCleaner($json)
+    {
+        $json = preg_replace("/([{,])([a-zA-Z][^: ]+):/", "$1\"$2\":", $json);
+        $json = str_replace('\x26', '\\\\x26amp;', $json);
+        return $json;
     }
 
     /**
