@@ -38,7 +38,7 @@ class ImportNews extends Command {
     public function fire()
     {
         if ($this->option('stock'))
-            $stocks = Stock::whereIn('symbol', $this->option)->get();
+            $stocks = Stock::whereIn('symbol', $this->option('stock'))->get();
         else
             $stocks = Stock::all();
         foreach ($stocks as $stock) {
