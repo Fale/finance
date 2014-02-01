@@ -36,6 +36,7 @@
 			@endforeach
 		</tbody>
 	</table>
+    {{ $notes->links() }}
 @else
 	There are no notes
 @endif
