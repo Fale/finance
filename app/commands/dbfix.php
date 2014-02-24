@@ -38,9 +38,12 @@ class dbfix extends Command {
     public function fire()
     {
         DB::connection()->disableQueryLog();
-        while (Value::where('delta', NULL)->count() > 0) {
-            $this->parse();
-        }
+        if ($this->option('all'))
+            while (Value::where('delta', NULL)->count() > 0)
+                $this->parse();
+        else
+            while (Value::where('delta', NULL)->where('date', '>', '2013-01-01')->count() > 0)
+                $this->parse();
     }
 
     public function parse()
@@ -74,7 +77,9 @@ class dbfix extends Command {
      */
     protected function getOptions()
     {
-        return array();
+        return array(
+            array('all', 'a', InputOption::VALUE_NONE, 'Fix old data too')
+        );
     }
 
 }
