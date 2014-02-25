@@ -42,13 +42,16 @@ class dbfix extends Command {
             while (Value::where('delta', NULL)->count() > 0)
                 $this->parse();
         else
-            while (Value::where('delta', NULL)->where('date', '>', '2013-01-01')->count() > 0)
-                $this->parse();
+            $this->parse();
     }
 
     public function parse()
     {
-        foreach (Value::where('delta', NULL)->limit(100)->orderBy('date', 'desc')->get() as $v)
+        if ($this->option('all'))
+            $values = Value::where('delta', NULL)->limit(100)->orderBy('date', 'desc')->get();
+        else
+            $values = Value::where('delta', NULL)->where('date', '>', '2014-01-01')->orderBy('date', 'desc')->get();
+        foreach ($values as $v)
         {
             echo $v->stock->symbol . ": " . $v->date . "\n";
             $p = Value::where('stock_id', $v->stock->id)->where('date', '<', $v->date)->orderBy('date', 'desc')->pluck('close');
