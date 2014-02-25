@@ -57,6 +57,8 @@ class dbfix extends Command {
             $p = Value::where('stock_id', $v->stock->id)->where('date', '<', $v->date)->orderBy('date', 'desc')->pluck('close');
             if ($p)
                 $v->delta = (($v->close - $p) / $p) * 100;
+            else
+                $v->delta = 0;
             if ($v->indexa == 0)
                 $v->indexa = floor((($v->close + $v->open) * $v->volume) / 2 / 5000);
             $v->save();
