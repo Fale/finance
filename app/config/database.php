@@ -67,7 +67,7 @@ return array(
 			'driver'   => 'pgsql',
 			'host'     => 'localhost',
 			'database' => 'finance',
-			'username' => 'www-data',
+			'username' => 'apache',
 			'password' => 'finance',
 			'charset'  => 'utf8',
 			'prefix'   => '',
