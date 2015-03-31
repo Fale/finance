@@ -17,3 +17,4 @@ Artisan::add(new ImportAll);
 Artisan::add(new ImportFast);
 Artisan::add(new ImportNew);
 Artisan::add(new ImportNews);
+Artisan::add(new ForceDeltaRecalculation);
