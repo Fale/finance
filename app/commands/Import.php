@@ -50,7 +50,10 @@ class Import extends Command {
                 $datas[$data[0]]['absdelta'] = (($data[2] - $data[3]) / $data[3]) * 100;
             else
                 $datas[$data[0]]['absdelta'] = 0; 
-            $datas[$data[0]]['indexa'] = floor((($data[4] + $data[1]) * $data[5]) / 2 / 5000);
+            if (($data[4] + $data[1]) * $data[5] != 0)
+                $datas[$data[0]]['indexa'] = floor((($data[4] + $data[1]) * $data[5]) / 2 / 5000);
+            else
+                $datas[$data[0]]['indexa'] = 0;
         }
 
         $present = Value::where('stock_id', $id)->lists('id', 'date');
@@ -63,6 +66,8 @@ class Import extends Command {
                               ->pluck('close');
             if ($prevClose != 0)
                 $data['delta'] = (($data['close'] - $prevClose) / $prevClose) * 100;
+            else
+                $$data['delta'] = 0;
             Value::create($data);
         }
 
