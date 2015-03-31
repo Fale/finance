@@ -41,15 +41,17 @@ class ForceDeltaRecalculation extends Import {
         $stocks = Stock::where('active', TRUE)->orderBy('symbol')->get();
         $c = 0;
         $t = count($stocks);
-        $pc = 0;
         foreach ($stocks as $stock) {
             $c++;
             echo $c . '/' . $t . ' - ' . $stock->symbol . " ...";
-            $vs = Value::where('stock_id', $stock->id)->orderBy('date');
+            $pc = 0;
+            $vs = Value::where('stock_id', $stock->id)->orderBy('date')->get();
             foreach ($vs as $v) {
-                if ($pc != 0 && $v->close - $pc != 0)
+                if (($pc != 0) && (($v->close - $pc) != 0)) {
                     $v->delta = (($v->close - $pc) / $pc) * 100;
                     $v->save();
+                }
+                $pc = $v->close;
             }
             echo " done\n";
         }
