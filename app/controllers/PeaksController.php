@@ -13,7 +13,7 @@ class PeaksController extends BaseController {
         else
             $deltaSymbol = '<=';
 
-        $values = Value::where('ocdelta', $deltaSymbol, Input::get('percentile', 10))
+        $values = Value::where('delta', $deltaSymbol, Input::get('percentile', 10))
             ->where('date', '>=', Input::get('from', Carbon::now()->subWeek()))
             ->where('date', '<=', Input::get('to', Carbon::now()))
             ->where('volume', '>=', Input::get('volume', 1000000))

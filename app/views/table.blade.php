@@ -63,7 +63,7 @@
                 <td>{{$data->date}}</td>
                 <td>{{$data->open}}</td>
                 <td>{{$data->close}}</td>
-                <td>{{$data->ocdelta}}</td>
+                <td>{{$data->delta}}</td>
                 <td>{{$data->low}}</td>
                 <td>{{$data->high}}</td>
                 <td>{{$data->absdelta}}</td>
