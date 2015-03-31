@@ -41,7 +41,7 @@ class ImportNews extends Command {
         if ($this->option('stock'))
             $stocks = Stock::whereIn('symbol', $this->option('stock'))->get();
         else
-            $stocks = Stock::all();
+            $stocks = Stock::where('active', TRUE)->orderBy('symbol')->get();
         foreach ($stocks as $stock) {
             $notes = $this->import($stock);
             if ($notes) {

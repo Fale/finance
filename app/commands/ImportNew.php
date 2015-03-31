@@ -38,7 +38,7 @@ class ImportNew extends Import {
     public function fire()
     {
         DB::connection()->disableQueryLog();
-        $stocks = Stock::where('active', TRUE)->orderBy('id')->get();
+        $stocks = Stock::where('active', TRUE)->orderBy('symbol')->get();
         foreach ($stocks as $stock) {
             echo $stock->id . '. ' . $stock->symbol . "...";
             $imported = $this->getImport('NASDAQ', $stock->symbol, TRUE);
