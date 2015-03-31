@@ -57,7 +57,13 @@ class Import extends Command {
 
         $real = array_diff_key($datas, $present);
         foreach ($real as $data) {
-                Value::create($data);
+            $prevClose = Value::where('date', '<', $data['date'])
+                              ->orderBy('date', 'desc')
+                              ->first()
+                              ->pluck('close');
+            if ($prevClose != 0)
+                $data['delta'] = (($data['close'] - $prevClose) / $prevClose) * 100;
+            Value::create($data);
         }
 
         $last = max(array_keys($datas));
