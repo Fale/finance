@@ -38,8 +38,7 @@ class ForceDeltaRecalculation extends Import {
     public function fire()
     {
         DB::connection()->disableQueryLog();
-        $values = Value::groupBy('stock_id')->lists('stock_id');
-        $stocks = Stock::where('active', TRUE)->whereNotIn('id', $values)->orderBy('symbol')->get();
+        $stocks = Stock::where('active', TRUE)->orderBy('symbol')->get();
         $c = 0;
         $t = count($stocks);
         $pc = 0;
