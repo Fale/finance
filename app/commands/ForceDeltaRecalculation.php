@@ -82,7 +82,7 @@ class ForceDeltaRecalculation extends Import {
     protected function getOptions()
     {
         return array(
-            array('stock', 's', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Stocks to work on')
+            array('stock', 's', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Stocks to work on'),
             array('from', 'f', InputOption::VALUE_REQUIRED, 'Minimum date to import')
         );
     }
