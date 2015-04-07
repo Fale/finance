@@ -61,6 +61,7 @@ class Import extends Command {
         $real = array_diff_key($datas, $present);
         foreach ($real as $data) {
             $prevClose = Value::where('date', '<', $data['date'])
+                              ->where('stock_id', $data['stock_id'])
                               ->orderBy('date', 'desc')
                               ->first()
                               ->pluck('close');
