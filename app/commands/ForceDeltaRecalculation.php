@@ -38,14 +38,20 @@ class ForceDeltaRecalculation extends Import {
     public function fire()
     {
         DB::connection()->disableQueryLog();
-        $stocks = Stock::where('active', TRUE)->orderBy('symbol')->get();
+        if ($this->option('stock'))
+            $stocks = Stock::whereIn('symbol', $this->option('stock'))->get();
+        else
+            $stocks = Stock::where('active', TRUE)->orderBy('symbol')->get();
         $c = 0;
         $t = count($stocks);
         foreach ($stocks as $stock) {
             $c++;
             echo $c . '/' . $t . ' - ' . $stock->symbol . " ...";
             $pc = 0;
-            $vs = Value::where('stock_id', $stock->id)->orderBy('date')->get();
+            if ($this->option('from'))
+                $vs = Value::where('date', '>=', $this->option('from')->where('stock_id', $stock->id)->orderBy('date')->get();
+            else
+                $vs = Value::where('stock_id', $stock->id)->orderBy('date')->get();
             foreach ($vs as $v) {
                 if (($pc != 0) && (($v->close - $pc) != 0)) {
                     $v->delta = (($v->close - $pc) / $pc) * 100;
@@ -75,7 +81,10 @@ class ForceDeltaRecalculation extends Import {
      */
     protected function getOptions()
     {
-        return array();
+        return array(
+            array('stock', 's', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Stocks to work on')
+            array('from', 'f', InputOption::VALUE_REQUIRED, 'Minimum date to import')
+        );
     }
 
 }
