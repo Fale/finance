@@ -49,7 +49,7 @@ class ForceDeltaRecalculation extends Import {
             echo $c . '/' . $t . ' - ' . $stock->symbol . " ...";
             $pc = 0;
             if ($this->option('from'))
-                $vs = Value::where('date', '>=', $this->option('from')->where('stock_id', $stock->id)->orderBy('date')->get();
+                $vs = Value::where('date', '>=', $this->option('from'))->where('stock_id', $stock->id)->orderBy('date')->get();
             else
                 $vs = Value::where('stock_id', $stock->id)->orderBy('date')->get();
             foreach ($vs as $v) {
