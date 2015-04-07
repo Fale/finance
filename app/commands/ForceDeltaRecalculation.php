@@ -53,7 +53,7 @@ class ForceDeltaRecalculation extends Import {
             else
                 $vs = Value::where('stock_id', $stock->id)->orderBy('date')->get();
             foreach ($vs as $v) {
-                if ($pc != 0)) {
+                if ($pc != 0) {
                     $v->delta = (($v->close - $pc) / $pc) * 100;
                     $v->save();
                 }
