@@ -68,7 +68,7 @@ class Import extends Command {
             if ($prevClose != 0)
                 $data['delta'] = (($data['close'] - $prevClose) / $prevClose) * 100;
             else
-                $$data['delta'] = 0;
+                $data['delta'] = 0;
             Value::create($data);
         }
 
