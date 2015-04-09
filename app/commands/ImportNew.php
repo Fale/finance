@@ -38,7 +38,10 @@ class ImportNew extends Import {
     public function fire()
     {
         DB::connection()->disableQueryLog();
-        $stocks = Stock::where('active', TRUE)->orderBy('symbol')->get();
+        if ($this->option('stock'))
+            $stocks = Stock::where('symbol', $this->option('stock'))->get();
+        else
+            $stocks = Stock::where('active', TRUE)->orderBy('symbol')->get();
         $c = 0;
         $t = count($stocks);
         foreach ($stocks as $stock) {
@@ -66,7 +69,9 @@ class ImportNew extends Import {
      */
     protected function getOptions()
     {
-        return array();
+        return array(
+            array('stock', 's', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Stocks to work on')
+        );
     }
 
 }
