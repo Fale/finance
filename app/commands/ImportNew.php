@@ -70,7 +70,7 @@ class ImportNew extends Import {
     protected function getOptions()
     {
         return array(
-            array('stock', 's', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Stocks to work on')
+            array('stock', 's', InputOption::VALUE_REQUIRED, 'Stock to work on')
         );
     }
 

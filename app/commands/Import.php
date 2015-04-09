@@ -59,14 +59,14 @@ class Import extends Command {
         $present = Value::where('stock_id', $id)->lists('id', 'date');
 
         $real = array_diff_key($datas, $present);
-        foreach ($real as $data) {
-            $prevClose = Value::where('date', '<', $data['date'])
+        $real_sorted = array_reverse($real, True);
+        foreach ($real_sorted as $data) {
+            $prev = DB::table('values')->where('date', '<', $data['date'])
                               ->where('stock_id', $data['stock_id'])
                               ->orderBy('date', 'desc')
-                              ->first()
-                              ->pluck('close');
-            if ($prevClose != 0)
-                $data['delta'] = (($data['close'] - $prevClose) / $prevClose) * 100;
+                              ->first();
+            if ($prev->close != 0)
+                $data['delta'] = (($data['close'] - $prev->close) / $prev->close) * 100;
             else
                 $data['delta'] = 0;
             Value::create($data);
